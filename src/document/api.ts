@@ -54,11 +54,12 @@ export class DocumentAPI extends Requestable {
       documentId: number,
       config: {
         use_text_from_template?: boolean;
+        pdf_template?: string;
       } = {},
   ): Promise<Document> {
     return this.request<Document>({
       method: 'POST',
-      url: `/documents/${documentId}/cancel?use_text_from_template=${config.use_text_from_template ?? false}`,
+      url: `/documents/${documentId}/cancel?use_text_from_template=${config.use_text_from_template ?? false}&pdf_template=${config.pdf_template ?? 'DE'}`,
     });
   }
 

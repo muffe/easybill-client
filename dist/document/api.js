@@ -43,10 +43,10 @@ class DocumentAPI extends Requestable_1.Requestable {
         });
     }
     cancelDocument(documentId, config = {}) {
-        var _a;
+        var _a, _b;
         return this.request({
             method: 'POST',
-            url: `/documents/${documentId}/cancel?use_text_from_template=${(_a = config.use_text_from_template) !== null && _a !== void 0 ? _a : false}`,
+            url: `/documents/${documentId}/cancel?use_text_from_template=${(_a = config.use_text_from_template) !== null && _a !== void 0 ? _a : false}&pdf_template=${(_b = config.pdf_template) !== null && _b !== void 0 ? _b : 'DE'}`,
         });
     }
     sendDocument(documentId, config) {

@@ -10,6 +10,7 @@ export declare class DocumentAPI extends Requestable {
     completeDocument(documentId: number): Promise<Document>;
     cancelDocument(documentId: number, config?: {
         use_text_from_template?: boolean;
+        pdf_template?: string;
     }): Promise<Document>;
     sendDocument(documentId: number, config: {
         type: 'email' | 'fax' | 'post';
