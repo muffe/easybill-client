@@ -643,6 +643,10 @@ export interface paths {
           shipping_country?: unknown;
           /** Filter documents by status. Keep in mind that not every document type has a status. */
           status?: unknown;
+          /** Filter documents by root_id. */
+          root_id?: unknown;
+          /** Filter documents by external_id. */
+          external_id?: unknown;
         };
       };
       responses: {
