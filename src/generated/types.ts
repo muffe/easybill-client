@@ -645,6 +645,8 @@ export interface paths {
           status?: unknown;
           /** Filter documents by root_id. */
           root_id?: unknown;
+          /** Filter documents by root_id. */
+          ref_id?: unknown;
           /** Filter documents by external_id. */
           external_id?: unknown;
         };
