@@ -17,3 +17,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./customer"), exports);
 __exportStar(require("./customerGroup"), exports);
 __exportStar(require("./document"), exports);
+__exportStar(require("./documentPayment"), exports);

@@ -18,6 +18,7 @@ exports.EasybillClient = void 0;
 const api_1 = require("./customer/api");
 const api_2 = require("./customerGroup/api");
 const api_3 = require("./document/api");
+const api_4 = require("./documentPayment/api");
 class EasybillClient {
     constructor(apiKey) {
         const baseURL = 'https://api.easybill.de/rest/v1';
@@ -25,6 +26,7 @@ class EasybillClient {
         this.customerAPI = new api_1.CustomerAPI(baseURL, apiKey);
         this.customerGroupAPI = new api_2.CustomerGroupAPI(baseURL, apiKey);
         this.documentAPI = new api_3.DocumentAPI(baseURL, apiKey);
+        this.documentPaymentAPI = new api_4.DocumentPaymentAPI(baseURL, apiKey);
     }
     static getInstance(apiKey) {
         let instance = EasybillClient.instanceMap.get(apiKey);
