@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.log = void 0;
+exports.log = log;
 const winston_1 = require("winston");
 function formatParams(info) {
     const { timestamp, level, message, label } = info;
@@ -23,4 +23,3 @@ const logger = process.env.NODE_ENV !== 'production'
 function log(options) {
     logger.log(options.level, options.message, { label: options.label });
 }
-exports.log = log;

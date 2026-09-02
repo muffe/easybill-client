@@ -12,9 +12,9 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter stock entries by position id. */
-                    position_id?: unknown;
+                    position_id?: string;
                     /** Filter stock entries by document id. */
-                    document_id?: unknown;
+                    document_id?: string;
                 };
             };
             responses: {
@@ -49,7 +49,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the stock entry that needs to be fetched */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -73,11 +73,11 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter serial numbers by position id. */
-                    position_id?: unknown;
+                    position_id?: string;
                     /** Filter serial numbers by document id. */
-                    document_id?: unknown;
+                    document_id?: string;
                     /** Filter serial numbers by usage. */
-                    in_use?: unknown;
+                    in_use?: boolean;
                 };
             };
             responses: {
@@ -112,7 +112,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the serial number that needs to be fetched */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -130,7 +130,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the serial number that needs to be deleted */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -170,7 +170,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the login that needs to be fetched */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -192,25 +192,25 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter customers by group_id. You can add multiple group ids separate by comma like id,id,id. */
-                    group_id?: unknown;
+                    group_id?: string;
                     /** Filter customers by additional_group_id. You can add multiple group ids separate by comma like id,id,id. */
-                    additional_group_id?: unknown;
+                    additional_group_id?: string;
                     /** Filter customers by number. You can add multiple numbers separate by comma like no,no,no. */
-                    number?: unknown;
+                    number?: string;
                     /** Filter customers by country. You can add multiple countries separate by comma like DE,PL,FR. */
-                    country?: unknown;
+                    country?: string;
                     /** Filter customers by zip_code. You can add multiple zip codes separate by comma like zip,zip,zip. */
-                    zip_code?: unknown;
+                    zip_code?: string;
                     /** Filter customers by emails. You can add multiple emails separate by comma like mail,mail,mail. */
-                    emails?: unknown;
+                    emails?: string;
                     /** Filter customers by first_name. You can add multiple names separate by comma like name,name,name. */
-                    first_name?: unknown;
+                    first_name?: string;
                     /** Filter customers by first_name. You can add multiple names separate by comma like name,name,name. */
-                    last_name?: unknown;
+                    last_name?: string;
                     /** Filter customers by first_name. You can add multiple names separate by comma like name,name,name. */
-                    company_name?: unknown;
+                    company_name?: string;
                     /** Filter customers by created_at. You can filter one date with created_at=2014-12-10 or between like 2015-01-01,2015-12-31. */
-                    created_at?: unknown;
+                    created_at?: string;
                 };
             };
             responses: {
@@ -224,6 +224,10 @@ export interface paths {
         };
         post: {
             parameters: {
+                query: {
+                    /** Controls the type of the customer. If provided and the field "number" or "supplier_number" is empty or omitted, the type will force the generation of the relevant number if applicable. I. e. omitting "supplier_number" but providing the query parameter "SUPPLIER" will generate a "supplier_number". */
+                    type?: 'CUSTOMER' | 'SUPPLIER' | 'CUSTOMER,SUPPLIER';
+                };
                 body: {
                     body: definitions['Customer'];
                 };
@@ -245,7 +249,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer that needs to be fetched */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -263,7 +267,11 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer that needs to be updated */
-                    id: unknown;
+                    id: number;
+                };
+                query: {
+                    /** Controls the type of the customer. If provided and the field "number" or "supplier_number" is empty or omitted, the type will force the generation of the relevant number if applicable. I. e. omitting "supplier_number" but providing the query parameter "SUPPLIER" will generate a "supplier_number". */
+                    type?: 'CUSTOMER' | 'SUPPLIER' | 'CUSTOMER,SUPPLIER';
                 };
                 body: {
                     body: definitions['Customer'];
@@ -284,7 +292,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer that needs to be deleted */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -308,7 +316,7 @@ export interface paths {
                 };
                 path: {
                     /** ID of customer that needs to be fetched */
-                    customerId: unknown;
+                    customerId: number;
                 };
             };
             responses: {
@@ -324,7 +332,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer */
-                    customerId: unknown;
+                    customerId: number;
                 };
                 body: {
                     body?: definitions['Contact'];
@@ -347,9 +355,9 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer */
-                    customerId: unknown;
+                    customerId: number;
                     /** ID of contact */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -367,9 +375,9 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer */
-                    customerId: unknown;
+                    customerId: number;
                     /** ID of contact */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body?: definitions['Contact'];
@@ -390,9 +398,9 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer */
-                    customerId: unknown;
+                    customerId: number;
                     /** ID of contact */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -414,7 +422,7 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter discounts by customer_id. You can add multiple customer_ids separate by comma like id,id,id. */
-                    customer_id?: unknown;
+                    customer_id?: string;
                 };
             };
             responses: {
@@ -447,7 +455,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the discount */
-                    id: unknown;
+                    id: number;
                 };
                 query: {
                     /** Limited the result. Default is 100. Maximum can be 1000. */
@@ -471,7 +479,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the to be soon updated discount */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body?: definitions['DiscountPosition'];
@@ -492,7 +500,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the to be soon deleted discount */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -514,7 +522,7 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter discounts by customer_id. You can add multiple customer_ids separate by comma like id,id,id. */
-                    customer_id?: unknown;
+                    customer_id?: string;
                 };
             };
             responses: {
@@ -547,7 +555,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the discount */
-                    id: unknown;
+                    id: number;
                 };
                 query: {
                     /** Limited the result. Default is 100. Maximum can be 1000. */
@@ -571,7 +579,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the to be soon updated discount */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body?: definitions['DiscountPositionGroup'];
@@ -592,7 +600,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of the to be soon deleted discount */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -614,37 +622,37 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter documents by type. Multiple typs seperate with , like type=INVOICE,CREDIT. */
-                    type?: unknown;
+                    type?: 'INVOICE' | 'RECURRING' | 'CREDIT' | 'OFFER' | 'REMINDER' | 'DUNNING' | 'STORNO' | 'STORNO_CREDIT' | 'DELIVERY' | 'PDF' | 'CHARGE' | 'CHARGE_CONFIRM' | 'LETTER' | 'ORDER' | 'PROFORMA_INVOICE' | 'STORNO_PROFORMA_INVOICE';
                     /** Filter documents by draft flag. */
-                    is_draft?: unknown;
+                    is_draft?: '0' | '1';
                     /** Filter documents by archive flag. */
-                    is_archive?: unknown;
+                    is_archive?: '0' | '1';
                     /** Filter documents by customer_id. You can add multiple customer_is separate by comma like id,id,id. */
-                    customer_id?: unknown;
+                    customer_id?: string;
                     /** Filter documents by project_id. You can add multiple project_id separate by comma like id,id,id. */
-                    project_id?: unknown;
+                    project_id?: string;
+                    /** Filter documents by ref_id. */
+                    ref_id?: string;
                     /** Filter documents by document_date. You can filter one date with document_date=2014-12-10 or between like 2015-01-01,2015-12-31. */
-                    document_date?: unknown;
+                    document_date?: string;
                     /** Filter documents by paid_at. You can filter one date with paid_at=2014-12-10 or between like 2015-01-01,2015-12-31. With paid_at=null you get all unpaid documents. */
-                    paid_at?: unknown;
+                    paid_at?: string;
                     /** Filter documents by title. */
-                    title?: unknown;
+                    title?: string;
                     /** Filter documents by number. */
-                    number?: unknown;
+                    number?: string;
                     /** Filter documents by cancel_id. You can add multiple ids separate by comma like id,id,id. With cancel_id=null you get all not canceled documents. */
-                    cancel_id?: unknown;
+                    cancel_id?: string;
                     /** Filter documents by fulfillment_country. */
-                    fulfillment_country?: unknown;
+                    fulfillment_country?: string;
                     /** Filter documents by vat_country. */
-                    vat_country?: unknown;
+                    vat_country?: string;
                     /** Filter documents by shipping_country. */
-                    shipping_country?: unknown;
+                    shipping_country?: string;
                     /** Filter documents by status. Keep in mind that not every document type has a status. */
-                    status?: unknown;
+                    status?: string;
                     /** Filter documents by root_id. */
                     root_id?: unknown;
-                    /** Filter documents by root_id. */
-                    ref_id?: unknown;
                     /** Filter documents by external_id. */
                     external_id?: unknown;
                 };
@@ -679,7 +687,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of document */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -697,11 +705,13 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of document */
-                    id: unknown;
+                    id: number;
                 };
                 query: {
                     /** Forces refreshing of the customer data. */
-                    refresh_customer_data?: unknown;
+                    refresh_customer_data?: 'false' | 'true';
+                    /** A string that is saved on the document version as reason. This value takes only affect if you update an already finalized document and provide this value. */
+                    reason_for_change?: string;
                 };
                 body: {
                     body: definitions['Document'];
@@ -714,6 +724,8 @@ export interface paths {
                 };
                 /** Invalid Document */
                 400: unknown;
+                /** Resource is locked. This status is returned if a process is currently running which locks the requested resource. Try again later. */
+                409: unknown;
                 /** Too Many Requests */
                 429: unknown;
             };
@@ -722,7 +734,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of document */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -730,6 +742,8 @@ export interface paths {
                 204: never;
                 /** Not found */
                 404: unknown;
+                /** Resource is locked. This status is returned if a process is currently running which locks the requested resource. Try again later. */
+                409: unknown;
                 /** Too Many Requests */
                 429: unknown;
             };
@@ -740,7 +754,11 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of document */
-                    id: unknown;
+                    id: number;
+                };
+                query: {
+                    /** A string that is saved on the document version as reason. */
+                    reason_for_change?: string;
                 };
             };
             responses: {
@@ -750,6 +768,8 @@ export interface paths {
                 };
                 /** Not found */
                 404: unknown;
+                /** Resource is locked. This status is returned if a process is currently running which locks the requested resource. Try again later. */
+                409: unknown;
                 /** Too Many Requests */
                 429: unknown;
             };
@@ -760,7 +780,11 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of document */
-                    id: unknown;
+                    id: number;
+                };
+                query: {
+                    /** Use standard texts from the template. */
+                    use_text_from_template?: boolean;
                 };
             };
             responses: {
@@ -780,8 +804,8 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of document */
-                    id: unknown;
-                    type: unknown;
+                    id: number;
+                    type: 'email' | 'fax' | 'post';
                 };
                 body: {
                     body: definitions['PostBoxRequest'];
@@ -802,7 +826,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of document */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -811,6 +835,129 @@ export interface paths {
                     schema: string;
                 };
                 /** Not found */
+                404: unknown;
+                /** Too Many Requests */
+                429: unknown;
+            };
+        };
+    };
+    '/documents/{id}/jpg': {
+        get: {
+            parameters: {
+                query: {
+                    /** The page of the document where the image should start. */
+                    offset?: number;
+                    /** The page of the document where the image should end. */
+                    limit?: number;
+                };
+                path: {
+                    /** ID of document */
+                    id: number;
+                };
+            };
+            responses: {
+                /** Successful operation */
+                200: {
+                    schema: string;
+                };
+                /** Not found */
+                404: unknown;
+                /** Too Many Requests */
+                429: unknown;
+            };
+        };
+    };
+    '/documents/{id}/{type}': {
+        post: {
+            parameters: {
+                path: {
+                    /** ID of document */
+                    id: number;
+                    /** The target document type */
+                    type: 'DUNNING' | 'REMINDER' | 'CHARGE_CONFIRM' | 'CHARGE' | 'CREDIT' | 'DELIVERY' | 'INVOICE' | 'ORDER';
+                };
+                query: {
+                    /** The ID of the printer template to use. Defaults to 'DE' if not given. */
+                    pdf_template?: string;
+                };
+            };
+            responses: {
+                /** Successful operation */
+                201: {
+                    headers: {};
+                    schema: definitions['Document'];
+                };
+                /** Invalid target document type */
+                400: unknown;
+                /** Too Many Requests */
+                429: unknown;
+            };
+        };
+    };
+    '/documents/{id}/versions': {
+        get: {
+            parameters: {
+                query: {
+                    /** Limited the result. Default is 100. Maximum can be 1000. */
+                    limit?: parameters['LIMIT'];
+                    /** Set current Page. Default is 1. */
+                    page?: parameters['PAGE'];
+                };
+                path: {
+                    /** ID of document */
+                    id: number;
+                };
+            };
+            responses: {
+                /** Successful operation */
+                200: {
+                    schema: definitions['DocumentVersions'];
+                };
+                /** Too Many Requests */
+                429: unknown;
+            };
+        };
+    };
+    '/documents/{id}/versions/{versionId}': {
+        get: {
+            parameters: {
+                path: {
+                    /** ID of document */
+                    id: number;
+                    /** ID of document version */
+                    versionId: number;
+                };
+            };
+            responses: {
+                /** Successful operation */
+                200: {
+                    schema: definitions['DocumentVersion'];
+                };
+                /** Document Version does not exist */
+                404: unknown;
+                /** Too Many Requests */
+                429: unknown;
+            };
+        };
+    };
+    '/documents/{id}/versions/{versionId}/items/{versionItemId}/download': {
+        get: {
+            parameters: {
+                path: {
+                    /** ID of document */
+                    id: number;
+                    /** ID of document version */
+                    versionId: number;
+                    /** ID of document version item */
+                    versionItemId: number;
+                };
+            };
+            responses: {
+                /** Successful operation */
+                200: {
+                    schema: string;
+                };
+                /** Document Version does not exist */
                 404: unknown;
                 /** Too Many Requests */
                 429: unknown;
@@ -857,7 +1004,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer group */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -875,7 +1022,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer goup */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['CustomerGroup'];
@@ -896,7 +1043,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of customer group */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -949,7 +1096,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of task */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -967,7 +1114,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of task */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['Task'];
@@ -988,7 +1135,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of task */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1010,9 +1157,9 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter projects by customer_id. You can add multiple ids separate by comma like id,id,id. */
-                    customer_id?: unknown;
+                    customer_id?: string;
                     /** Filter projects by status. */
-                    status?: unknown;
+                    status?: 'DONE' | 'OPEN' | 'CANCEL';
                 };
             };
             responses: {
@@ -1045,7 +1192,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of project */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1063,7 +1210,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of project */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['Project'];
@@ -1084,7 +1231,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of project */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1106,9 +1253,9 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter positions by type. */
-                    type?: unknown;
+                    type?: 'TEXT' | 'PRODUCT' | 'SERVICE';
                     /** Filter positions by number. You can add multiple numbers separate by comma like no,no,no. */
-                    number?: unknown;
+                    number?: string;
                 };
             };
             responses: {
@@ -1141,7 +1288,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of position */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1159,7 +1306,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of position */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['Position'];
@@ -1180,7 +1327,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of position */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1233,7 +1380,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of position group */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1251,7 +1398,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of position goup */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['PositionGroup'];
@@ -1272,7 +1419,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of position group */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1294,9 +1441,19 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter time-tracking by login_id. You can add multiple ids separate by comma like id,id,id. */
-                    login_id?: unknown;
+                    login_id?: string;
                     /** Filter time-tracking by project_id. You can add multiple ids separate by comma like id,id,id. */
-                    project_id?: unknown;
+                    project_id?: string;
+                    /**
+                     * Filter time-tracking by date_from_at. You can filter one date with date_from_at=2014-12-10 or between like 2015-01-01,2015-12-31.
+                     * You can also specify a specific time with date_from_at=2014-12-10 12:30:00 or between like 2015-01-01 12:30:00,2015-01-01 13:00:00.
+                     */
+                    date_from_at?: string;
+                    /**
+                     * Filter time-tracking by date_thru_at. You can filter one date with date_thru_at=2014-12-10 or between like 2015-01-01,2015-12-31.
+                     * You can also specify a specific time with date_thru_at=2014-12-10 12:30:00 or between like 2015-01-01 12:30:00,2015-01-01 13:00:00.
+                     */
+                    date_thru_at?: string;
                 };
             };
             responses: {
@@ -1329,7 +1486,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of time tracking */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1347,7 +1504,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of time tracking */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['TimeTracking'];
@@ -1368,7 +1525,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of time tracking */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1421,7 +1578,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of text template */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1439,7 +1596,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of text template */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['TextTemplate'];
@@ -1460,7 +1617,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of text template */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1493,12 +1650,14 @@ export interface paths {
         post: {
             parameters: {
                 formData: {
-                    file: unknown;
+                    file: {
+                        [key: string]: any;
+                    };
                 };
             };
             responses: {
                 /** Successful operation */
-                200: {
+                201: {
                     schema: definitions['Attachment'];
                 };
                 /** Too Many Requests */
@@ -1511,7 +1670,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of attachment */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1529,7 +1688,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of attachment */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['Attachment'];
@@ -1550,7 +1709,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of attachment */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1568,7 +1727,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of attachment */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1592,11 +1751,11 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter payments by document_id. You can add multiple ids separate by comma like id,id,id. */
-                    document_id?: unknown;
+                    document_id?: string;
                     /** Filter payments by payment_at. You can filter one date with payment_at=2014-12-10 or between like 2015-01-01,2015-12-31. */
-                    payment_at?: unknown;
+                    payment_at?: string;
                     /** Filter payments by reference. You can add multiple references separate by comma like id,id,id. */
-                    reference?: unknown;
+                    reference?: string;
                 };
             };
             responses: {
@@ -1615,7 +1774,7 @@ export interface paths {
                 };
                 query: {
                     /** Mark document as paid when amount less then payment amount. */
-                    paid?: unknown;
+                    paid?: boolean;
                 };
             };
             responses: {
@@ -1633,7 +1792,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of document payment */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1651,7 +1810,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of document payment */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1673,11 +1832,11 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter post boxes by type. Multiple typs seperate with , like type=EMAIL,FAX. */
-                    type?: unknown;
+                    type?: 'EMAIL' | 'FAX' | 'POST';
                     /** Filter post boxes by status. */
-                    status?: unknown;
+                    status?: 'WAITING' | 'PREPARE' | 'ERROR' | 'OK' | 'PROCESSING';
                     /** Filter post boxes by document_id. You can add multiple document ids separate by comma like id,id,id. */
-                    document_id?: unknown;
+                    document_id?: string;
                 };
             };
             responses: {
@@ -1695,7 +1854,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of post box */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1713,7 +1872,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of post box */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1735,7 +1894,7 @@ export interface paths {
                     /** Set current Page. Default is 1. */
                     page?: parameters['PAGE'];
                     /** Filter SEPA payment by document_id. You can add multiple ids separate by comma like id,id,id. */
-                    document_id?: unknown;
+                    document_id?: string;
                 };
             };
             responses: {
@@ -1768,7 +1927,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of SEPA payment */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1786,7 +1945,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of SEPA payment */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['SEPAPayment'];
@@ -1807,7 +1966,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of SPEA payment */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1860,7 +2019,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of WebHook */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1878,7 +2037,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of WebHook */
-                    id: unknown;
+                    id: number;
                 };
                 body: {
                     body: definitions['WebHook'];
@@ -1899,7 +2058,7 @@ export interface paths {
             parameters: {
                 path: {
                     /** ID of WebHook */
-                    id: unknown;
+                    id: number;
                 };
             };
             responses: {
@@ -1914,6 +2073,12 @@ export interface paths {
     };
     '/pdf-templates': {
         get: {
+            parameters: {
+                query: {
+                    /** Filters the templates by the specified type. You can specify several types comma-separated, like type,type,type. */
+                    type?: ('INVOICE' | 'PROFORMA_INVOICE' | 'STORNO_PROFORMA_INVOICE' | 'OFFER' | 'CREDIT' | 'STORNO' | 'STORNO_CREDIT' | 'CHARGE' | 'CHARGE_CONFIRM' | 'DUNNING' | 'REMINDER' | 'DELIVERY' | 'LETTER' | 'ORDER')[];
+                };
+            };
             responses: {
                 /** Successful operation */
                 200: {
@@ -1988,8 +2153,10 @@ export interface definitions {
         login_id?: number;
         mobile?: string;
         note?: string;
-        /** Automatically generated if empty. */
+        /** Automatically generated if empty/omitted and when no type in query is provided or the type 'CUSTOMER', 'CUSTOMER,SUPPLIER' */
         number?: string;
+        /** Automatically generated if the type SUPPLIER or 'CUSTOMER,SUPPLIER' is provided as query parameter and the field supplier_number is empty/omitted. */
+        supplier_number?: string;
         /** 1 = Stets pünktliche Zahlung, 2 = überwiegend pünktliche Zahlung, 3 = überwiegend verspätete Zahlung, 5 = Grundsätzlich verspätete Zahlung */
         payment_options?: 1 | 2 | 3 | 5;
         personal?: boolean;
@@ -2003,7 +2170,7 @@ export interface definitions {
         sale_price_level?: 'SALEPRICE2' | 'SALEPRICE3' | 'SALEPRICE4' | 'SALEPRICE5' | 'SALEPRICE6' | 'SALEPRICE7' | 'SALEPRICE8' | 'SALEPRICE9' | 'SALEPRICE10';
         /** 0 = nothing, 1 = Mr, 2 = Mrs, 3 = Company, 4 = Mr & Mrs, 5 = Married couple, 6 = Family */
         salutation?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-        /** BASIC = SEPA-Basislastschrift, COR1 = SEPA-Basislastschrift COR1, COMPANY = SEPA-Firmenlastschrift, NULL = Noch kein Mandat erteilt */
+        /** BASIC = SEPA-Basislastschrift, COR1 = SEPA-Basislastschrift COR1 (deprecated use BASIC instead), COMPANY = SEPA-Firmenlastschrift, NULL = Noch kein Mandat erteilt */
         sepa_agreement?: 'BASIC' | 'COR1' | 'COMPANY' | 'NULL';
         sepa_agreement_date?: string;
         sepa_mandate_reference?: string;
@@ -2017,10 +2184,15 @@ export interface definitions {
         /** nStb = Nicht steuerbar (Drittland), nStbUstID = Nicht steuerbar (EU mit USt-IdNr.), nStbNoneUstID = Nicht steuerbar (EU ohne USt-IdNr.), revc = Steuerschuldwechsel §13b (Inland), IG = Innergemeinschaftliche Lieferung, AL = Ausfuhrlieferung, sStfr = sonstige Steuerbefreiung, NULL = Umsatzsteuerpflichtig */
         tax_options?: 'nStb' | 'nStbUstID' | 'nStbNoneUstID' | 'nStbIm' | 'revc' | 'IG' | 'AL' | 'sStfr' | 'NULL';
         title?: string;
+        archived?: boolean;
         vat_identifier?: string;
         zip_code?: string;
         /** Type of PDF to use when sending a Document to the Customer. */
-        documentPdfType?: 'default' | 'zugferd1' | 'zugferd2' | 'xrechnung' | 'xrechnung_xml';
+        document_pdf_type?: 'default' | 'zugferd1' | 'zugferd2_2' | 'xrechnung2_1_xml' | 'xrechnung2_2_xml' | 'xrechnung2_3_xml' | 'xrechnung3_0_xml';
+        /** Used as "buyerReference" in ZUGFeRD and as "Leitweg-ID" in the XRechnung format. */
+        buyer_reference?: string;
+        /** The ID given to your company by the customer in his system. */
+        foreign_supplier_number?: string;
     };
     /** A snapshot of the customer model which belongs to a document. This model is readonly and the state is final after finalization of the document. It's is identical to the state of the customer model at the time of finalization. Updates to the actual customer dataset won't affect this snapshot, however if you update the document the customer and therefore the customer snapshot may reflect a different state. */
     CustomerSnapshot: definitions['Customer'];
@@ -2092,6 +2264,7 @@ export interface definitions {
         itemType?: 'PRODUCT' | 'SERVICE' | 'UNDEFINED';
         id?: number;
     };
+    /** This information comes from the customer which can be set with customer_id. */
     DocumentAddress: {
         /** 0: empty<br/> 1: Herrn<br/> 2: Frau<br/> 3: Firma<br/> 4: Herrn und Frau<br/> 5: Eheleute<br/> 6: Familie */
         salutation?: number;
@@ -2108,6 +2281,7 @@ export interface definitions {
         state?: string;
         country?: string;
     };
+    /** This object is only available in document type RECURRING. */
     DocumentRecurring: {
         /** Must be in the future */
         next_date: string;
@@ -2125,6 +2299,7 @@ export interface definitions {
         /** Option is used to determine what date is used for the payment if is_paid is true. "next_valid_date" selects the next workday in regards to the created date of the document if the date falls on a saturday or sunday. */
         paid_date_option?: 'created_date' | 'due_date' | 'next_valid_date';
         is_sepa?: boolean;
+        /** COR1 is deprecated use CORE instead. */
         sepa_local_instrument?: 'CORE' | 'COR1' | 'B2B';
         sepa_sequence_type?: 'FRST' | 'OOFF' | 'FNAL' | 'RCUR';
         sepa_reference?: string;
@@ -2132,6 +2307,7 @@ export interface definitions {
         /** The document type that will be generated. Can not be changed on existing documents. */
         target_type?: 'INVOICE' | 'CREDIT' | 'ORDER' | 'OFFER';
     };
+    /** This object is only available in document type INVOICE or CREDIT. */
     ServiceDate: {
         /** With DEFAULT no other fields are required and this message will be printed: 'Invoice date coincides with the time of supply'.<br/> For SERVICE or DELIVERY exactly one of the following fields must be set: date, date_from and date_to or text. */
         type?: 'DEFAULT' | 'SERVICE' | 'DELIVERY';
@@ -2141,15 +2317,18 @@ export interface definitions {
         text?: string;
     };
     Document: {
-        /** This information comes from the customer which can be set with customer_id. */
         address?: definitions['DocumentAddress'];
         attachment_ids?: number[];
-        /** This information comes from the customer which can be set with customer_id. */
         label_address?: definitions['DocumentAddress'];
         /** Amount in cents  (e.g. "150" = 1.50€) */
         amount?: number;
         /** Amount in cents  (e.g. "150" = 1.50€) */
         amount_net?: number;
+        /** A date which signals when to anonymize the document. Must be in the future. Turns into a read only field if the document is anonymized */
+        anonymize_due_date?: string;
+        /** This field signals if the document was anonymized */
+        anonymize_status?: 'NOT_ANONYMIZED' | 'ANONYMIZED';
+        anonymized_at?: string;
         bank_debit_form?: string;
         billing_country?: string;
         /** 0 === Net, 1 === Gross. */
@@ -2179,15 +2358,15 @@ export interface definitions {
         /** due date in days. */
         due_in_days?: number;
         id?: number;
+        /** Indicates if a document can be accepted by the end customer through the document's public access page. */
+        is_acceptable_on_public_domain?: boolean;
         is_archive?: boolean;
         /** This property is read only. To finish the document call /documents/{id}/done. */
         is_draft?: boolean;
         /** Marks a document as a replica from another software. */
         is_replica?: boolean;
-        /** Indicates if a document is in the long term archive */
-        is_cold?: boolean;
-        /** Signals when the document should be moved to the long term archive */
-        coldstorage_due_date?: string;
+        /** Indicates if a document is a one-stop-shop document */
+        is_oss?: boolean;
         /** Field holds all unique document_note of items for the document */
         item_notes?: string[];
         items?: definitions['DocumentPosition'][];
@@ -2203,11 +2382,11 @@ export interface definitions {
         /** Default template is null or 'DE', default english is 'EN' and for all others use the numeric template ID. */
         pdf_template?: string;
         project_id?: number;
-        /** This object is only available in document type RECURRING */
         recurring_options?: definitions['DocumentRecurring'];
         /** Reference document id */
         ref_id?: number;
-        /** This object is only available in document type INVOICE or CREDIT. */
+        /** Root document id */
+        root_id?: number;
         service_date?: definitions['ServiceDate'];
         shipping_country?: string;
         /** This value can only be used in document type DELIVERY, ORDER, CHARGE or OFFER. NULL is default = not set. */
@@ -2226,9 +2405,27 @@ export interface definitions {
         fulfillment_country?: string;
         /** NULL: Normal steuerbar<br/> nStb: Nicht steuerbar (Drittland)<br/> nStbUstID: Nicht steuerbar (EU mit USt-IdNr.)<br/> nStbNoneUstID: Nicht steuerbar (EU ohne USt-IdNr.)<br/> nStbIm: Nicht steuerbarer Innenumsatz<br/> revc: Steuerschuldwechsel §13b (Inland)<br/> IG: Innergemeinschaftliche Lieferung<br/> AL: Ausfuhrlieferung<br/> sStfr: sonstige Steuerbefreiung<br/> smallBusiness: Kleinunternehmen (Keine MwSt.) */
         vat_option?: 'NULL' | 'nStb' | 'nStbUstID' | 'nStbNoneUstID' | 'nStbIm' | 'revc' | 'IG' | 'AL' | 'sStfr' | 'smallBusiness';
+        file_format_config?: definitions['FileFormatConfig'][];
     };
     Documents: definitions['List'] & {
         items?: definitions['Document'][];
+    };
+    FileFormatConfig: {
+        type: 'default' | 'default_without_stationery' | 'zugferd1' | 'zugferd2_2' | 'xrechnung2_2_xml' | 'xrechnung2_3_xml' | 'xrechnung3_0_xml';
+    };
+    DocumentVersion: {
+        created_at?: string;
+        document_id?: number;
+        id?: number;
+        items?: definitions['DocumentVersionItem'][];
+        reason?: string;
+    };
+    DocumentVersionItem: {
+        document_version_item_type?: 'default' | 'default_without_stationery' | 'xrechnung2_2_xml' | 'xrechnung2_3_xml' | 'xrechnung3_0_xml' | 'zugferd1' | 'zugferd2_2';
+        id?: number;
+    };
+    DocumentVersions: definitions['List'] & {
+        items?: definitions['DocumentVersion'][];
     };
     CustomerGroup: {
         name: string;
@@ -2282,6 +2479,7 @@ export interface definitions {
         note?: string;
         status?: 'OPEN' | 'DONE' | 'CANCEL';
         due_at?: string;
+        budget_notify_frequency?: 'ALWAYS' | 'ONCE' | 'NEVER';
         consumed_time?: number;
         consumed_amount?: number;
     };
@@ -2301,48 +2499,7 @@ export interface definitions {
         unit?: string;
         /** The FAS-Account is the four-digit revenue account, in which the revenue will be entered when doing the export to your tax consultant. In case you want to split your revenue to several revenue accounts, please talk to your tax consultant before, to guarantee an unobstructed use of the interface. For every revenue element, there are number ranges, which can be used. Please avoid using combinations of numbers, which can not be used by your tax consultant. */
         export_identifier?: string;
-        export_identifier_extended?: {
-            /** Umsatzsteuerpflichtig */
-            NULL?: {
-                [key: string]: any;
-            };
-            /** Nicht steuerbar (Drittland) */
-            nStb?: {
-                [key: string]: any;
-            };
-            /** Nicht steuerbar (EU mit USt-IdNr.) */
-            nStbUstID?: {
-                [key: string]: any;
-            };
-            /** Nicht steuerbar (EU ohne USt-IdNr.) */
-            nStbNoneUstID?: {
-                [key: string]: any;
-            };
-            /** Nicht steuerbarer Innenumsatz */
-            nStbIm?: {
-                [key: string]: any;
-            };
-            /** Steuerschuldwechsel §13b (Inland) */
-            revc?: {
-                [key: string]: any;
-            };
-            /** Innergemeinschaftliche Lieferung */
-            IG?: {
-                [key: string]: any;
-            };
-            /** Ausfuhrlieferung */
-            AL?: {
-                [key: string]: any;
-            };
-            /** sonstige Steuerbefreiung */
-            sStfr?: {
-                [key: string]: any;
-            };
-            /** Kleinunternehmen (Keine MwSt.) */
-            smallBusiness?: {
-                [key: string]: any;
-            };
-        };
+        export_identifier_extended?: definitions['PositionExportIdentifierExtended'];
         login_id?: number;
         price_type?: 'BRUTTO' | 'NETTO';
         vat_percent?: number;
@@ -2382,9 +2539,32 @@ export interface definitions {
         stock_limit?: number;
         /** Used as the default quantity when adding this position to a document */
         quantity?: number;
+        archived?: boolean;
     };
     Positions: definitions['List'] & {
         items?: definitions['Position'][];
+    };
+    PositionExportIdentifierExtended: {
+        /** Umsatzsteuerpflichtig */
+        NULL?: string;
+        /** Nicht steuerbar (Drittland) */
+        nStb?: string;
+        /** Nicht steuerbar (EU mit USt-IdNr.) */
+        nStbUstID?: string;
+        /** Nicht steuerbar (EU ohne USt-IdNr.) */
+        nStbNoneUstID?: string;
+        /** Nicht steuerbarer Innenumsatz */
+        nStbIm?: string;
+        /** Steuerschuldwechsel §13b (Inland) */
+        revc?: string;
+        /** Innergemeinschaftliche Lieferung */
+        IG?: string;
+        /** Ausfuhrlieferung */
+        AL?: string;
+        /** sonstige Steuerbefreiung */
+        sStfr?: string;
+        /** Kleinunternehmen (Keine MwSt.) */
+        smallBusiness?: string;
     };
     PositionGroup: {
         description?: string;
@@ -2420,6 +2600,7 @@ export interface definitions {
         items?: definitions['TimeTracking'][];
     };
     TextTemplate: {
+        /** Deprecated, field is always true. */
         can_modify?: boolean;
         id?: number;
         text: string;
@@ -2428,7 +2609,7 @@ export interface definitions {
     TextTemplates: definitions['List'] & {
         items?: definitions['TextTemplate'][];
     };
-    /** If customer_id, project_id and document_id are null then attachment has global access from web ui. */
+    /** If customer_id, project_id and document_id are null, the attachment has a global context and is accessible from the web ui. Keep in mind only to provide one of the four context. You can't attach a file to several context in one request. A error is thrown if you provide two or more context (i. E. sending customer_id, document_id and project_id in combination). */
     Attachment: {
         created_at?: string;
         customer_id?: number;
@@ -2464,8 +2645,22 @@ export interface definitions {
         subject?: string;
         message?: string;
         date?: string;
+        send_by_self?: boolean;
+        send_with_attachment?: boolean;
         /** When set to null, the setting on the customer is used */
-        document_file_type?: 'default' | 'zugferd1' | 'zugferd2' | 'xrechnung' | 'xrechnung_xml';
+        document_file_type?: 'default' | 'zugferd1' | 'zugferd2' | 'xrechnung' | 'xrechnung_xml' | 'xrechnung2_2_xml' | 'xrechnung3_0_xml';
+        /**
+         * This value indicates what method is used when the document is send via mail.
+         * The different types are offered by the german post as additional services.
+         * The registered mail options will include a tracking number which will be
+         * added to the postbox when known.
+         *
+         * If the value is omitted or empty when a postbox is created with the type "POST"
+         * post_send_type_standard will be used.
+         *
+         * For postbox with a different type than "POST" this field will hold a empty string.
+         */
+        post_send_type?: 'post_send_type_standard' | 'post_send_type_registered' | 'post_send_type_registered_and_personal' | 'post_send_type_registered_and_receipt' | 'post_send_type_registered_throwin';
     };
     PostBox: {
         id?: number;
@@ -2485,6 +2680,24 @@ export interface definitions {
         status_msg?: string;
         login_id?: number;
         document_file_type?: 'default' | 'zugferd1' | 'zugferd2' | 'xrechnung' | 'xrechnung_xml';
+        /**
+         * This value indicates what method is used when the document is send via mail.
+         * The different types are offered by the german post as additional services.
+         * The registered mail options will include a tracking number which will be
+         * added to the postbox when known.
+         *
+         * If the value is omitted or empty when a postbox is created with the type "POST"
+         * post_send_type_standard will be used.
+         *
+         * For postbox with a different type than "POST" this field will hold a empty string.
+         */
+        post_send_type?: 'post_send_type_standard' | 'post_send_type_registered' | 'post_send_type_registered_and_personal' | 'post_send_type_registered_and_receipt' | 'post_send_type_registered_throwin' | 'post_send_type_prio';
+        /**
+         * If the document is send with one of the registered send types stated for post_send_type, a tracking identifier
+         * will be added to the postbox at a later point when the tracking identifier is provided
+         * by our service partner.
+         */
+        tracking_identifier?: string;
     };
     PostBoxes: definitions['List'] & {
         items?: definitions['PostBox'][];
@@ -2516,7 +2729,7 @@ export interface definitions {
         export_at?: string;
         export_error?: string;
         id?: number;
-        /** CORE: SEPA Core Direct Debit<br/> COR1: SEPA-Basislastschrift COR1<br/> B2B: SEPA Business to Business Direct Debit */
+        /** CORE: SEPA Core Direct Debit<br/> COR1: SEPA-Basislastschrift COR1 (deprecated use CORE instead)<br/> B2B: SEPA Business to Business Direct Debit */
         local_instrument: 'CORE' | 'COR1' | 'B2B';
         mandate_date_of_signature: string;
         mandate_id: string;
@@ -2538,22 +2751,31 @@ export interface definitions {
         events: ('document.create' | 'document.update' | 'document.completed' | 'document.deleted' | 'document.payment_add' | 'document.payment_delete' | 'customer.create' | 'customer.update' | 'customer.delete' | 'contact.create' | 'contact.update' | 'contact.delete' | 'position.create' | 'position.update' | 'position.delete' | 'postbox.create' | 'postbox.update' | 'postbox.delete' | 'postbox.sent')[];
         id?: number;
         is_active?: boolean;
-        last_response?: {
-            date?: string;
-            code?: number;
-            response?: string;
-        };
+        last_response?: definitions['WebHookLastResponse'];
         secret: string;
         url: string;
     };
     WebHooks: definitions['List'] & {
         items?: definitions['WebHook'][];
     };
+    WebHookLastResponse: {
+        date?: string;
+        code?: number;
+        response?: string;
+    };
     PDFTemplate: {
         id?: string;
         name?: string;
         pdf_template?: string;
         document_type?: string;
+        settings?: {
+            text_prefix?: string;
+            text?: string;
+            email?: {
+                subject?: string;
+                message?: string;
+            };
+        };
     };
     PDFTemplates: {
         items?: definitions['PDFTemplate'][];
