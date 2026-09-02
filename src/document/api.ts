@@ -51,11 +51,11 @@ export class DocumentAPI extends Requestable {
   }
 
   cancelDocument(
-      documentId: number,
-      config: {
-        use_text_from_template?: boolean;
-        pdf_template?: string;
-      } = {},
+    documentId: number,
+    config: {
+      use_text_from_template?: boolean;
+      pdf_template?: string;
+    } = {},
   ): Promise<Document> {
     return this.request<Document>({
       method: 'POST',
